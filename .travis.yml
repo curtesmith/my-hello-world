@@ -21,10 +21,14 @@ jobs:
 # fail, build the images (if this step fails
 # the whole Travis build is considered a failure).
 
-script:
-  - docker build -t curtesmith/my-hello-world:latest .
-  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-  - docker push curtesmith/my-hello-world:latest
+      script:
+      - docker build -t curtesmith/my-hello-world:latest .
+      - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+      - docker push curtesmith/my-hello-world:latest
+
+    - stage: create the infrastructure
+      script:
+      - echo "build the infrastructure here"
 
 # only execute the following instructions in
 # the case of a success (failing at this point
