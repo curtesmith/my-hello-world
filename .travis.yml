@@ -15,22 +15,16 @@ services:
 
 jobs:
   include:
-    - stage: docker-build
+    - stage: build docker image
 # first execute the test suite.
 # after the test execution is done and didn't
 # fail, build the images (if this step fails
 # the whole Travis build is considered a failure).
-script:
-# - 'make test'
-# - 'make image'
-  - docker build -t curtesmith/my-hello-world:latest .
 
-  - stage: docker-push
 script:
-  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then 
-    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
-    docker push curtesmith/my-hello-world:latest ;
-    fi
+  - docker build -t curtesmith/my-hello-world:latest .
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - docker push curtesmith/my-hello-world:latest
 
 # only execute the following instructions in
 # the case of a success (failing at this point
