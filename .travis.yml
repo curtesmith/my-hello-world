@@ -23,7 +23,7 @@ jobs:
 
 script:
   - docker build -t curtesmith/my-hello-world:latest .
-  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
   - docker push curtesmith/my-hello-world:latest
 
 # only execute the following instructions in
