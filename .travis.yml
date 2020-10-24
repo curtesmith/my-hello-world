@@ -1,3 +1,5 @@
+language: generic
+
 # make use of vm's 
 sudo: 'required'
 
@@ -17,7 +19,8 @@ services:
 # the whole Travis build is considered a failure).
 script:
 # - 'make test'
-  - 'make image'
+# - 'make image'
+  - docker build -t curtesmith/my-hello-world:latest .
 
 # only execute the following instructions in
 # the case of a success (failing at this point
@@ -30,7 +33,7 @@ script:
 after_success:
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
       docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
-      make push-image ;
+      docker push curtesmith/my-hello-world:latest ;
     fi
 
 # don't notify me when things fail
