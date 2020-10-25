@@ -42,7 +42,7 @@ jobs:
 
     - stage: create the infrastructure
       script:
-      - echo "build the infrastructure here"
+      - ./deploy.sh
 
 # only execute the following instructions in
 # the case of a success (failing at this point
