@@ -8,10 +8,24 @@ sudo: 'required'
 services:
   - 'docker'
 
+env:
+  # This environment variable tells Terraform not to prompt for input. This is
+  # not required, but if we make a mistake, the Travis builder will hang waiting
+  # for user input, tieing up unnecessary resources.
+  - TF_INPUT=false
+  
 # prepare the machine before any code
 # installation scripts
 # before_install:
 #   - './.travis/main.sh'
+# Install terraform
+before_install:
+  - curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.8.8/terraform_0.8.8_linux_amd64.zip
+  - unzip /tmp/terraform.zip -d /tmp
+  - mkdir ~/bin
+  - mv /tmp/terraform ~/bin
+  - export PATH="~/bin:$PATH"
+
 
 jobs:
   include:
