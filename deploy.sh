@@ -32,8 +32,10 @@ aws s3 cp terraform/terraform.tfstate s3://travis-builds-curtesmith/archive/$TRA
 #get kubectl and add to bin folder
 curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl && \
     chmod +x kubectl && sudo mv kubectl /usr/local/bin/
-    
+
 #configure kubectl and deploy the metrics server
+echo "region:" $(terraform output region)
+echo "cluster_name:" $(terraform output cluster_name)
 aws eks --region $(terraform output region) update-kubeconfig --name $(terraform output cluster_name)
 wget -O v0.3.6.tar.gz https://codeload.github.com/kubernetes-sigs/metrics-server/tar.gz/v0.3.6 && tar -xzf v0.3.6.tar.gz
 kubectl apply -f metrics-server-0.3.6/deploy/1.8+/
