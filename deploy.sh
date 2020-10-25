@@ -1,2 +1,8 @@
 #!/bin/bash
-echo "we are in the bash file"
+set -o errexit -o nounset
+
+cd terraform
+
+terraform plan
+
+terraform apply
