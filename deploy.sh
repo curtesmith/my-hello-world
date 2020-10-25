@@ -28,8 +28,10 @@ aws s3 cp terraform.tfstate s3://travis-builds-curtesmith/latest/
 aws s3 cp terraform.tfstate s3://travis-builds-curtesmith/archive/$TRAVIS_BUILD_NUMBER/
 
 #get kubectl and add to bin folder
-curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl && \
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" && \
     chmod +x kubectl && sudo mv kubectl /usr/local/bin/
+#curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl && \
+#    chmod +x kubectl && sudo mv kubectl /usr/local/bin/
 
 #configure kubectl and deploy the metrics server
 echo "region:" $(terraform output region)
