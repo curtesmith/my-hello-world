@@ -19,30 +19,42 @@ env:
 # before_install:
 #   - './.travis/main.sh'
 # Install terraform
-# before_install:
+before_install:
   # - curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip
   # - unzip /tmp/terraform.zip -d /tmp
   # - mv /tmp/terraform ~/bin
   # - export PATH="~/bin:$PATH"
 
-  
+  # - pyenv global 3.7.1
+  # - pip install -U pip
+  # - pip install awscli
+  # - mkdir -p ~/state
+  # - aws s3 sync s3://travis-builds-curtesmith ~/state
+
+
 jobs:
   include:
     - stage: do these steps in parallel
-  # build docker image and push to docker hub  
-      script: ./docker.sh
+# first execute the test suite.
+# after the test execution is done and didn't
+# fail, build the images (if this step fails
+# the whole Travis build is considered a failure).
 
+      script: ./docker.sh
+      # - docker build -t curtesmith/my-hello-world:latest .
+      # - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+      # - docker push curtesmith/my-hello-world:latest
     - stage: do these steps in parallel   
-  # apply updates to infrastructure
-    script: ./deploy.sh
+  #  - stage: create the infrastructure
+      script: ./deploy.sh
 
 
 # only execute the following instructions in
 # the case of a success (failing at this point
 # won't mark the build as a failure).
+# To have `DOCKER_USERNAME` and `DOCKER_PASSWORD`
 # after_success:
 #     - aws s3 sync ~/terraform s3://travis-builds-curtesmith/$TRAVIS_BUILD_NUMBER
-
 # don't notify me when things fail
 notifications:
   email: false
