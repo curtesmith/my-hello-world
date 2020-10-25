@@ -24,10 +24,8 @@ terraform plan -out=main.plan
 terraform apply main.plan
 
 #retain terraform.tfstate
-cd ..
-
-aws s3 cp terraform/terraform.tfstate s3://travis-builds-curtesmith/latest/
-aws s3 cp terraform/terraform.tfstate s3://travis-builds-curtesmith/archive/$TRAVIS_BUILD_NUMBER/
+aws s3 cp terraform.tfstate s3://travis-builds-curtesmith/latest/
+aws s3 cp terraform.tfstate s3://travis-builds-curtesmith/archive/$TRAVIS_BUILD_NUMBER/
 
 #get kubectl and add to bin folder
 curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl && \
