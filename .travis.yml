@@ -25,9 +25,9 @@ before_install:
   - mv /tmp/terraform ~/bin
   - export PATH="~/bin:$PATH"
 
-  # - pyenv global 3.7.1
-  # - pip install -U pip
-  # - pip install awscli
+  - pyenv global 3.7.1
+  - pip install -U pip
+  - pip install awscli
   - mkdir -p ~/state
   - aws s3 sync s3://travis-builds-curtesmith ~/state
 
