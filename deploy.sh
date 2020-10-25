@@ -38,6 +38,12 @@ echo "cluster_name:" $(terraform output cluster_name)
 echo "view configuration"
 kubectl config view
 
+echo "replace config"
+terraform output kubectl_config > ~/.kube/config
+
+echo "view updated configuration"
+kubectl config view
+
 echo "get identity"
 aws sts get-caller-identity
 
