@@ -54,8 +54,8 @@ jobs:
 # the case of a success (failing at this point
 # won't mark the build as a failure).
 # To have `DOCKER_USERNAME` and `DOCKER_PASSWORD`
-# after_success:
-
+after_success:
+    - aws s3 sync ~/terraform/terraform.tfstate s3://travis-builds-curtesmith
 # don't notify me when things fail
 notifications:
   email: false
