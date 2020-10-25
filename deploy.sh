@@ -14,7 +14,7 @@ echo "Setting git user email"
 git config user.email curt.e.smith@gmail.com
 
 echo "Adding git upstream remote"
-git remote add upstream "https://git@github.com/curtesmith/my-hello-world.git"
+git remote add upstream "https://github.com/curtesmith/my-hello-world.git"
 
 git checkout master
 
