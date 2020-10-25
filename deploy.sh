@@ -34,9 +34,12 @@ curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.7.
 #configure kubectl and deploy the metrics server
 echo "region:" $(terraform output region)
 echo "cluster_name:" $(terraform output cluster_name)
-#aws eks --region $(terraform output region) update-kubeconfig --name $(terraform output cluster_name) --role-arn 
+aws eks --region $(terraform output region) update-kubeconfig --name $(terraform output cluster_name)
 echo "view configuration"
 kubectl config view
+
+echo "display config file"
+cat ~/.kube/config
 
 echo "replace config"
 terraform output kubectl_config > ~/.kube/config
