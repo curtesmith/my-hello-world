@@ -37,5 +37,7 @@ echo "cluster_name:" $(terraform output cluster_name)
 aws eks --region $(terraform output region) update-kubeconfig --name $(terraform output cluster_name)
 kubectl config view
 
+aws sts get-caller-identity
+
 wget -O v0.3.6.tar.gz https://codeload.github.com/kubernetes-sigs/metrics-server/tar.gz/v0.3.6 && tar -xzf v0.3.6.tar.gz
 kubectl apply -f metrics-server-0.3.6/deploy/1.8+/
