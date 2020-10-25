@@ -2,6 +2,7 @@
 #set -o errexit -o nounset
 
 cd terraform
+terraform init
 
 terraform plan -out=main.plan
 
