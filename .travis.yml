@@ -39,10 +39,10 @@ jobs:
       - docker build -t curtesmith/my-hello-world:latest .
       - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
       - docker push curtesmith/my-hello-world:latest
-
-    - stage: create the infrastructure
       script:
-      - ./deploy.sh
+        - ./deploy.sh
+    # - stage: create the infrastructure
+
 
 # only execute the following instructions in
 # the case of a success (failing at this point
