@@ -3,6 +3,6 @@
 
 cd terraform
 
-terraform plan
+terraform plan -out=main.plan
 
-terraform apply
+terraform apply main.plan
