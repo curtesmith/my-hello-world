@@ -8,10 +8,10 @@ terraform plan -out=main.plan
 terraform apply main.plan
 
 echo "Setting git user name"
-git config user.name curtesmith
+#git config user.name curtesmith
 
 echo "Setting git user email"
-git config user.email curt.e.smith@gmail.com
+#git config user.email curt.e.smith@gmail.com
 
 echo "Adding git upstream remote"
 git remote add upstream "https://github.com/curtesmith/my-hello-world.git"
