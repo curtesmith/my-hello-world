@@ -72,5 +72,6 @@ echo "create the ClusterRoleBinding resource"
 kubectl apply -f https://raw.githubusercontent.com/hashicorp/learn-terraform-provision-eks-cluster/master/kubernetes-dashboard-admin.rbac.yaml
 
 echo "apply update for application and service"
+cd ..
 kubectl apply -f deploy.yml
 kubectl apply -f service.yml
