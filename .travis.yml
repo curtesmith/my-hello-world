@@ -46,7 +46,7 @@ jobs:
       # - docker push curtesmith/my-hello-world:latest
     - stage: Create infrastructure and docker image   
   #  - stage: create the infrastructure
-      script: ./prerequisites.sh
+      script: ./infrastructure.sh
     - stage: Apply deployment and services   
   #  - stage: create the infrastructure
       script: ./deploy.sh
