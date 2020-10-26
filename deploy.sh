@@ -74,4 +74,4 @@ kubectl apply -f https://raw.githubusercontent.com/hashicorp/learn-terraform-pro
 echo "apply update for application and service"
 cd ..
 kubectl apply -f deploy.yml
-kubectl apply -f service.yml
+kubectl apply -f services.yml
