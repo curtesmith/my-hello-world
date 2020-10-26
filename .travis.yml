@@ -34,7 +34,7 @@ before_install:
 
 jobs:
   include:
-    - stage: do these steps in parallel
+    - stage: Create infrastructure and docker image
 # first execute the test suite.
 # after the test execution is done and didn't
 # fail, build the images (if this step fails
@@ -44,10 +44,12 @@ jobs:
       # - docker build -t curtesmith/my-hello-world:latest .
       # - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
       # - docker push curtesmith/my-hello-world:latest
-    - stage: do these steps in parallel   
+    - stage: Create infrastructure and docker image   
+  #  - stage: create the infrastructure
+      script: ./prerequisites.sh
+    - stage: Apply deployment and services   
   #  - stage: create the infrastructure
       script: ./deploy.sh
-
 
 # only execute the following instructions in
 # the case of a success (failing at this point
