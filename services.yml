@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: react
+  labels:
+    app: static
+    tier: react
+spec:
+  # comment or delete the following line if you want to use a LoadBalancer
+  # type: NodePort 
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the react service.
+  type: LoadBalancer
+  ports:
+  - port: 3000
+  selector:
+    app: static
+    tier: react
